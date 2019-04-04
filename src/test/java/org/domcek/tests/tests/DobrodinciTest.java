@@ -29,13 +29,13 @@ public class DobrodinciTest extends DriverBase {
         List<WebElement> sideMenuItems = page.getSideMenuItems();
         List<String> titles = new ArrayList<>();
         titles.add("Nadácia Jozefa Murgaša");
-        titles.add("2% z dane");
-        titles.add("Klub Priateľov Domčeka");
+        titles.add("Daruj 2% Domčeku - možnosť darovania aj 3 %");
+        titles.add("Klub Priateľov blahoslavenej Anky Kolesárovej");
         titles.add("Firmy a ľudia");
 
         for (int i=0; i<3; i++){
             sideMenuItems.get(i).click();
-            Assert.assertTrue(page.getTitle().getText().equals(titles.get(i)));
+            Assert.assertEquals(page.getTitle().getText(), titles.get(i));
         }
     }
 

@@ -23,12 +23,6 @@ public class HomeTest extends DriverBase {
     }
 
     @Test
-    public void testCount() throws Exception {
-        openUrl();
-        Assert.assertEquals(page.getCountMenuItems(), 9);
-    }
-
-    @Test
     public void testTopNew() throws Exception {
         openUrl();
         Assert.assertEquals(page.getCountNameTopNews(), 4);

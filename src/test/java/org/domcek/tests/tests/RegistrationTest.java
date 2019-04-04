@@ -30,15 +30,45 @@ public class RegistrationTest extends DriverBase {
 
     }
 
-//    @Test
-//    public void dateTest() throws Exception {
-//        openUrl("/register");
-//        Assert.assertEquals(page.getCurrentURL(), "http://domcek.sebastiansimko.sk/register");
-//        page.getName().sendKeys("Dominika");
-//        page.getLastName().sendKeys("Priezviskova");
-//        page.getButton().click();
-//        Assert.assertTrue(page.getFill().isDisplayed());
-// }
+    @Test
+    public void nonMatchingPassword() throws Exception {
+        openUrl("/register");
+        Assert.assertEquals(page.getCurrentURL(), "http://domcek.sebastiansimko.sk/register");
+        page.getName().sendKeys("Dominika");
+        page.getLastName().sendKeys("Priezviskova");
+        page.getBirthDate().click();
+        page.getBack().click();
+        page.getYear().click();
+        page.getMonth().click();
+        page.getDay().click();
+        page.getPhone().sendKeys("0901111222");
+        page.getEmajl().sendKeys(FormUtil.getRandomString(10) + "@dva.sk");
+        page.getCity().sendKeys("Kosice");
+        page.getPassword().sendKeys("mrkvicka123");
+        page.getPasswordConfirmation().sendKeys("mrkviciak123");
+        page.getButton().click();
+        Assert.assertTrue(page.getFill().isDisplayed());
+    }
+
+    @Test
+    public void badEmajl() throws Exception {
+        openUrl("/register");
+        Assert.assertEquals(page.getCurrentURL(), "http://domcek.sebastiansimko.sk/register");
+        page.getName().sendKeys("Dominika");
+        page.getLastName().sendKeys("Priezviskova");
+        page.getBirthDate().click();
+        page.getBack().click();
+        page.getYear().click();
+        page.getMonth().click();
+        page.getDay().click();
+        page.getPhone().sendKeys("0901111222");
+        page.getEmajl().sendKeys(FormUtil.getRandomString(10));
+        page.getCity().sendKeys("Kosice");
+        page.getPassword().sendKeys("mrkvicka123");
+        page.getPasswordConfirmation().sendKeys("mrkvicka123");
+        page.getButton().click();
+        Assert.assertTrue(page.getFill().isDisplayed());
+    }
 
     @Test
     public void goodTest() throws Exception {
@@ -63,7 +93,6 @@ public class RegistrationTest extends DriverBase {
         btn.click();
         Assert.assertTrue(page.getFormLogin().isDisplayed());
         Assert.assertEquals(page.getCurrentURL(), "http://domcek.sebastiansimko.sk/login");
-
     }
 
 

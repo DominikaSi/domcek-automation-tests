@@ -8,7 +8,6 @@ import java.util.List;
 
 public class HomePage extends Page {
 
-    private By activeMenuItems = By.xpath("//*[@id='main-nav']/ul/li[contains(@class,'nav-item') and not(contains(@class, 'd-md-none'))]");
     private By nameTopNews = By.xpath("//div[contains(@class, 'col-md-3 .col-6 news')]//h4");
     private By readMore = By.xpath("//div[contains(@class, 'col-md-3 .col-6 news')]//a/span");
     private By bestRead = By.xpath("//ul/li/a[@href='#best']");
@@ -19,11 +18,8 @@ public class HomePage extends Page {
     private By articleNextBest = By.cssSelector("#best .btn");
     private By underNav = By.cssSelector(".pagination li");
 
-
-
     public HomePage() throws Exception { driver = DriverBase.getDriver();}
 
-    public int getCountMenuItems() {return this.waitForElements(activeMenuItems).size();}
     public int getCountNameTopNews() {return this.waitForElements(nameTopNews).size();}
     public int getCountReadMore(){return driver.findElements(readMore).size();}
 
@@ -37,5 +33,4 @@ public class HomePage extends Page {
     public WebElement getArticleNextBest(){return driver.findElement(articleNextBest);}
 
     public List<WebElement> getUnderNav() {return this.waitForElements(underNav);}
-
 }
